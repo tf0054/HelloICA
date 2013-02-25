@@ -13,11 +13,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
-
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
@@ -33,7 +28,6 @@ import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.httpclient.methods.multipart.PartSource;
 import org.apache.commons.httpclient.methods.multipart.StringPart;
 
-import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -174,7 +168,6 @@ public class PostFromMongo {
      private static List<Document> getDocuments() {
         final List<Document> docs = new LinkedList<Document>();
 		DBObject objItem = null;
-        //String strRes = "";
         int intCount = numDocs;
         
 		while (cursor.hasNext()) {
@@ -187,7 +180,7 @@ public class PostFromMongo {
         	toBean(objItem, "", objHash);
         	
 			final Document objDocument = new Document(
-					"_id", //docId
+					"interaction.twitter.id", //docId
 					"interaction.interaction.content", //"interaction.twitter.text"
 					objHash
 			);

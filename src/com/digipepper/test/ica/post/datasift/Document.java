@@ -24,7 +24,7 @@ class Document {
     private HashMap<String,String> hashExclude = new HashMap<String,String>();
     private HashMap<String,String> objFields = new HashMap<String,String>();
 
-    public Document(final String docId, final String strContent, HashMap objHash) {
+    public Document(final String docId, final String strContent, HashMap<String, String> objHash) {
 
 		// main infos
 		this.docId = (String) objHash.get(docId);
@@ -50,7 +50,7 @@ class Document {
        // useless fields
        hashExclude.put("interactionId","1");
        hashExclude.put("interaction.links.hops","1");
-       //hashExclude.put("interaction.twitter.id","1");
+       //hashExclude.put("interaction.twitter.id","1"); // used for title
        hashExclude.put("interaction.twitter.text","1");
        hashExclude.put("interaction.twitter.source","1");
        hashExclude.put("interaction.interaction.id","1");
