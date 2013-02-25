@@ -7,10 +7,6 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
-
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
@@ -24,13 +20,6 @@ import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.commons.io.IOUtils;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
@@ -43,8 +32,6 @@ import org.kohsuke.args4j.Option;
 
 public class SetFlagViaRest {
 
-	static DBCursor cursor = null;
-
 	@Option(name="-hostname", metaVar="hostname", usage="Fully qualified host name of the server.",required=true)
 	private static String hostname;
 	@Option(name="-port", metaVar="port", usage="Port number for Admin REST API running on the server. The default value is 8390 (Embedded Server) or 80 (WebSphere Application Server).",required=true)
@@ -53,7 +40,7 @@ public class SetFlagViaRest {
 	private static String user;
 	@Option(name="-password", metaVar="password", usage="Administrative user password.",required=true)
 	private static String password;
-	@Option(name="-collectionId", metaVar="cid", usage="ID of the collection to add new document to.",required=true)
+	@Option(name="-colId", metaVar="cid", usage="ID of the collection to add new document to.",required=true)
 	private static String cid;
 	@Option(name="-docId", metaVar="did", usage="ID of the document to be setted a flag.",required=true)
 	private static String did;
