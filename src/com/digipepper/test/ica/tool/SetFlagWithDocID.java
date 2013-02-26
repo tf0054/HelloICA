@@ -30,7 +30,7 @@ import org.kohsuke.args4j.Option;
  * http://www-01.ibm.com/support/docview.wss?uid=swg27023678
  */
 
-public class SetFlagViaRest {
+public class SetFlagWithDocId {
 
 	@Option(name="-hostname", metaVar="hostname", usage="Fully qualified host name of the server.",required=true)
 	private static String hostname;
@@ -44,12 +44,12 @@ public class SetFlagViaRest {
 	private static String cid;
 	@Option(name="-docId", metaVar="did", usage="ID of the document to be setted a flag.",required=true)
 	private static String did;
-	@Option(name="-flagId", metaVar="did", usage="ID of the flag to use.",required=true)
+	@Option(name="-flagId", metaVar="fid", usage="ID of the flag to use.",required=true)
 	private static String fid;
 	
 	public final static void main(String[] args) throws Exception {
 
-		SetFlagViaRest shell = new SetFlagViaRest();
+		SetFlagWithDocId shell = new SetFlagWithDocId();
 		CmdLineParser parser = new CmdLineParser(shell);
 		try {
 			parser.parseArgument(args);
@@ -90,9 +90,9 @@ public class SetFlagViaRest {
      private static HttpMethod buildSetFlagMethod(final String hostname, final int port, final String user, final String password, final String cname, String did, String fid) throws FileNotFoundException {
          final StringBuffer url = new StringBuffer("http://");
          final String strAction = "set";
-         // http://ec2-175-41-203-170.ap-northeast-1.compute.amazonaws.com:8393/api/v10/search
-         url.append(hostname).append(":").append(port).append("/api/v10/flags?action="+strAction);
-         
+
+         url.append(hostname).append(":").append(port).append("/api/v10/flags");
+         url.append("?action="+strAction);         
          url.append("&api_username=").append(user);
          url.append("&api_password=").append(password);
          

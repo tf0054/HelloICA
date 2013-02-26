@@ -141,10 +141,12 @@ public class PostFromMongo {
         final PostMethod method = new PostMethod(url.toString());
         
         final List<Document> docs = getDocuments();
+        
         // Post parameters and the file with Multipart
         final List<Part> parts = new LinkedList<Part>();
         parts.add(new StringPart("collectionId", cids[1]));
         parts.add(new StringPart("documentSource", "datasift/"+cids[0]));
+        parts.add(new StringPart("output", "json"));
         parts.add(new StringPart("docs", buildDocsJSONString(docs)));
         
         System.out.println("The num of documents: "+docs.size());
@@ -157,7 +159,7 @@ public class PostFromMongo {
         		System.out.println("docId: "+d.getDocId());
         	}
         }
-        parts.add(new StringPart("output", "json"));
+
         final RequestEntity request = new MultipartRequestEntity(
         		parts.toArray(new Part[parts.size()]), method.getParams());
         method.setRequestEntity(request);
